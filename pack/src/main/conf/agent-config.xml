@@ -1,0 +1,119 @@
+<Agent>
+    <!-- 
+    A monitor is a configuration where you specify how the monitoring should behave and 
+    what needs to be monitored.
+    
+    The 'class' attribute of a monitor is mandatory. All other attributes are 
+    mandatory/optional based on the monitor class. There are two standard 
+    implementations provided
+    
+        - com.qualite.zdlc.jvmm.agent.MethodWrapperMonitor
+            This can monitor the start and end event of each method in its included classes. 
+            The method can be public/protected/private/static. But not abstract. It should have a 
+            non-empty implementation. Only methods in this class are considered. Inherited methods 
+            from the parent will be ignored. If you want methods from parent, make sure you 
+            add the parent class as well.
+            
+            The 'wrappers' attribute specifies how the events are handled. You can specify a 
+            list of classes comma separated. There are a few standard implementations provided.
+
+                - com.qualite.zdlc.jvmm.agent.MethodMarker
+                    Prints the method 'start' and 'end' in to console. Prints 'timestamp', 
+                    'thread name', 'class name', and 'method name' along with.
+                - com.qualite.zdlc.jvmm.agent.MethodTimer
+                    Prints the time taken to execute the method in milliseconds. Prints 'timestamp', 
+                    'thread name', 'class name', and 'method name' along with.
+                - com.qualite.zdlc.jvmm.agent.MethodParamsMarker
+                    Similar to MethodMarker except that it prints the values of input parameters 
+                    as well as the return value. The toString() of the object is printed if the object 
+                    is not null and 'null' other wise. Primitives are printed as such.
+             
+            'wrapper' attribute is optional, if unspecified, the default is 'MethodParamsMarker'
+
+        - com.qualite.zdlc.jvmm.agent.CallbackMethodWrapperMonitor
+            This is a special monitor which works similar to MethodWrapperMonitor except that instead
+            of printing to console, it will give a Callback to a registered CallbackListener. It has
+            only one wrapper available right now, which is com.qualite.zdlc.jvmm.agent.CallbackWrapper.
+            You can implement CallbackListener interface and use 
+            Callback.getInstance().setListener(CallbackListener) to register it. 
+
+        - com.qualite.zdlc.jvmm.agent.ToStringMonitor
+            This monitor will inject a toString() method in to all its included classes. You can 
+            use this if you have an object which appears in parameters whose class don't have an 
+            overridden toString(). That way, you can see the values when it gets printed through 
+            'MethodParamsMarker' listed above.
+            
+            The toString() method will get injected only if the toString() is not already overridden 
+            in the class. The method names should follow JavaBean(TM) name patterns. The injected 
+            toString() method will inspect the class for any JavaBean getX() methods - for example 
+            getName(), getAddress() etc. - and construct a string with all those properties and 
+            its values at runtime. All non-null 'String's will be wrapped with quotes.
+            
+            Only the getters from the current class are considered. The methods inherited from the 
+            parent classes are ignored.
+
+		    Important Note ::: This Monitor assumes that all the get methods in its classes do 
+		    not have any side effects. Means, executing them won't change the state of the object.
+		    If a class is a typical JavaBean(TM), it will be quite safe to add it here.
+            
+    A set of classes can be included in a monitor using the <Include-Class> or <Include-Package> tag.
+    The <Include-Class> tag lets you add one specific class under the 'name' attribute. The 
+    <Include-Package> tag will let you add all classes under a package. All sub-packages to this
+    package are also added in this include.
+    
+    To give more granularity in adding classes to the Monitor, you can add an <Exclude-Class> and/or
+    <Exclude-Package> under an <Include-Package> so that those classes/packages are excluded from the
+    monitor. If required, you can even add another 'Include' under the 'Exclude' for including some 
+    classes or packages that you excluded. In that way you can chain your alternating 'Include' and 
+    'Exclude' to any level to have ultimate control over which classes to monitor and which to not.
+    
+    That being said, it is impossible to choose an method under a class to monitor. Given a class, 
+    either you can monitor all the methods, or none at all.
+	
+	You can add <Exclude-Method> under <Include-Package> and/or <Include-Class> so that the method is excluded from the
+	monitor. By default the method will be excluded, if we want to exclude only params/return values of a method and want the 
+	method to be logged then we can	use args="true" as parameter for <Exclude-Method>. 
+	
+	Attributes for <Exclude-Method>:
+	name(mandatory): name of the method that excluded from the monitor 
+	class(mandatory): fully qualified name of the class of excluded method 
+	args(optional): set this attribute to true if you don't want to print method params/return values in the log and want to monitor the method
+    -->
+	<!--<Monitor wrappers="com.qualite.zdlc.jvmm.agent.MethodMarker, com.qualite.zdlc.jvmm.agent.MethodTimer"
+	   class="com.qualite.zdlc.jvmm.agent.MethodWrapperMonitor">
+        <Include-Package name="com.qualite.zdlc.jvmm.sample">
+            <Exclude-Package name="com.qualite.zdlc.jvmm.sample.bean"/>
+            <Exclude-Class name="com.qualite.zdlc.jvmm.sample.SampleParam"/>
+            <Exclude-Class name="com.qualite.zdlc.jvmm.sample.SampleDefault"/>
+        </Include-Package>
+	</Monitor>
+	
+	<Monitor wrappers="com.qualite.zdlc.jvmm.agent.MethodParamsMarker"
+       class="com.qualite.zdlc.jvmm.agent.MethodWrapperMonitor">
+        <Include-Class name="com.qualite.zdlc.jvmm.sample.SampleParam"/>
+    </Monitor>
+	-->
+    <!-- No wrapper specified, use default wrapper -->
+   <!-- <Monitor class="com.qualite.zdlc.jvmm.agent.MethodWrapperMonitor">
+        <Include-Class name="com.qualite.zdlc.jvmm.sample.SampleDefault"/>
+    </Monitor>
+
+    <Monitor class="com.qualite.zdlc.jvmm.agent.ToStringMonitor">
+        <Include-Package name="com.qualite.zdlc.jvmm.sample.bean"/>
+    </Monitor>
+	-->
+	
+	 <!-- <Monitor class="com.qualite.zdlc.jvmm.agent.CallbackMethodWrapperMonitor">		
+		
+		<Include-Package name="com.qualite.zdlc"></Include-Package>
+		
+    </Monitor> -->
+
+	<!-- Log4jConfiguration tag is used to specify the configuration details for log4j. -->
+	<Log4jConfiguration>
+		<FilePath>..\conf\LogName.log</FilePath>
+		<MaxFileSize>1mb</MaxFileSize>
+		<MaxBackUpIndex>10</MaxBackUpIndex>
+	</Log4jConfiguration>
+	 
+</Agent>

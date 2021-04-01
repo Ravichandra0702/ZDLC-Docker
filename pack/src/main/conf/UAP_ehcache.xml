@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache name="IterationsCache">
+    <diskStore path="ehcache.disk.store.dir"/>
+	
+	<cache eternal="true" maxElementsInMemory="10000" maxElementsOnDisk="1000000" name="snapshots" statistics="true" overflowToDisk="true"
+         diskPersistent="true" memoryStoreEvictionPolicy="LFU">
+		<cacheWriter maxWriteDelay="10" notifyListenersOnException="true" rateLimitPerSecond="2" retryAttemptDelaySeconds="2" retryAttempts="2" writeBatching=	"false" writeBatchSize="1" writeCoalescing="false" writeMode="write-behind">  
+            <cacheWriterFactory class="com.qualite.zdlc.uap.util.WriteBehindClassFactory"></cacheWriterFactory>  
+		 </cacheWriter>  
+  </cache>
+
+</ehcache>

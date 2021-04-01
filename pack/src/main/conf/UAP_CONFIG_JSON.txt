@@ -1,0 +1,167 @@
+{
+"EventHandler":{
+		"click": [{
+				   "nodeName" : "button"
+				 },
+				 {
+				   "nodeName" : "submit"
+				 },
+				 {
+				   "nodeName" : "image"
+				 },
+				 {
+				   "nodeName" : "a"
+				 },
+				 {
+				   "nodeName" : "img"
+				 },
+				 {
+				   "nodeName" : "textarea"
+				 },
+				 {
+				   "nodeName" : "text"
+				 },
+				 {
+				   "nodeName" : "div"
+				 },
+				 {
+				   "nodeName" : "label"
+				 },
+				 {
+				   "nodeName" : "li"
+				 },
+				 {
+				   "nodeName" : "span"
+				 },
+				 {
+				   "nodeName" : "tr"
+				 },
+				 {
+				   "nodeName" : "td"
+				 },
+				 {
+				   "nodeName" : "image"
+				 },
+				 {
+				   "nodeName" : "g"
+				 },
+				 {
+				   "nodeName" : "input",
+				   "attributes" : [{
+									"type" : "button"
+								},
+								{
+									"type" : "submit"
+								},
+								{
+									"type" : "image"
+								},
+								{
+									"type" : "textarea"
+								},
+								{
+									"type" : "text"
+								},
+								{
+									"type" : "radio"
+								},
+								{
+									"type" : "checkbox"
+								},
+								{
+									"type" : "password"
+								},
+								{
+									"type" : "search"
+								}]
+				 }],
+		"keypress": [{
+				   "nodeName" : "input",
+				   "attributes" : [{
+									"type" : "text"
+								},{
+									"type" : "radio"
+								}]
+				 }],
+		"mouseover": [],
+		"focus": [],
+		"dragAndDrop": [{
+						   "nodeName" : "g"
+						},
+						{
+						   "nodeName" : "image"
+						},
+						{
+						   "nodeName" : "div"
+						},
+						{
+						   "nodeName" : "li"
+						},
+						{
+						   "nodeName" : "p"
+						},
+						{
+						   "nodeName" : "span"
+						},
+						{
+						   "nodeName" : "a"
+						},
+						{
+							"nodeName" : "tr"
+						},
+						{
+							"nodeName" : "td"
+						},
+						{
+							"nodeName" : "text"
+						}]
+		},
+"NoiseRemover":{
+	"click": [
+			 {
+			   "nodeName" : "input",
+			   "attributes" : [{
+								"type" : "radio"
+							},
+							{
+								"type" : "file"
+							}]
+			 },{
+			   "nodeName" : "select",
+			   "attributes" : [
+							{
+								"type" : "select-one"
+							}]
+			 }],	
+	"blur": [
+			 {
+			   "nodeName" : "input",
+			   "attributes" : [
+							{
+								"type" : "submit"
+								
+							},{
+								"type" : "button"
+								
+							}]
+			 }]
+	},
+"ScreenScraperConfig":{
+					"interactiveElements" : "a,input,form,select,img,button,div",
+					"mainElementAttributes" : "id,name,type",
+					"subElementAttributes" : "value,href,title,alt,src,method,target,action,index",
+					"mouseEvents" : "onclick,ondblclick,onmouseover",
+					"ruleIdConfigForLabel" : [ 1, 2, 3, 4, 5 ],
+					"tagsConfigForLabel" : [ "LABEL", "SPAN", "DIV", "STRONG" ],
+					"customisedConfigForLabel" : ".class1",
+					"ruleIdConfigForScreenName" : [ 1, 2 ],
+					"customisedConfigForScreenName" : ".header",
+					"ruleIdConfigForUseCase" : [ 1, 2 ],
+					"customisedConfigForUseCase" : ".header",
+					"tagsConfigForUseCase" : [],
+					"nameExtractionForUseCase" : []
+					},
+"AutomateRecording":{
+					"projectName" : "UapTest"
+					}
+}

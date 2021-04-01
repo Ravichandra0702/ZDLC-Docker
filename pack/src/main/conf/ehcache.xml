@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache name="ZDLC_Cache">
+    <diskStore path="ehcache.disk.store.dir"/>
+    <cache name="rmsMasterDataCache" maxElementsInMemory="1"
+		maxElementsOnDisk="100" overflowToDisk="true" diskPersistent="true"
+		eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	<cache name="objAttrTypeAssocDataCache" maxElementsInMemory="1"
+		maxElementsOnDisk="100" overflowToDisk="true" diskPersistent="true"
+		eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	 <cache name="iterations"
+         maxElementsInMemory="1"
+         maxElementsOnDisk="500"
+         overflowToDisk="true"
+         diskPersistent="true"
+         eternal="true"
+         timeToIdleSeconds="0"
+         timeToLiveSeconds="0"
+         memoryStoreEvictionPolicy="LFU">
+  </cache>
+  <cache name="spdMasterDataCache" 
+		maxElementsInMemory="1"
+		maxElementsOnDisk="100" 
+		overflowToDisk="true" 
+		diskPersistent="true"
+		eternal="true" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="0"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	<cache name="zdlc" 
+		maxElementsInMemory="1"
+		maxElementsOnDisk="100" 
+		overflowToDisk="true" 
+		diskPersistent="true"
+		eternal="true" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="0"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	<cache name="macrosCache" 
+		maxElementsInMemory="1"
+		maxElementsOnDisk="100" 
+		overflowToDisk="true" 
+		diskPersistent="true"
+		eternal="true" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="0"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	<cache name="projectCache" 
+		maxElementsInMemory="1"
+		maxElementsOnDisk="100" 
+		overflowToDisk="true" 
+		diskPersistent="true"
+		eternal="false" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="28800"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	<cache name="synonyms" 
+		maxElementsInMemory="1"
+		maxElementsOnDisk="100" 
+		overflowToDisk="true" 
+		diskPersistent="true"
+		eternal="true" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="0"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+	<cache name="lineageCache" 
+		maxElementsInMemory="1"
+		maxElementsOnDisk="100" 
+		overflowToDisk="true" 
+		diskPersistent="true"
+		eternal="true" 
+		timeToIdleSeconds="0" 
+		timeToLiveSeconds="0"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+</ehcache>
